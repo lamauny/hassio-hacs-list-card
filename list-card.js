@@ -1,4 +1,4 @@
-console.log(`%clist-card\n%cVersion: ${'0.0.1'}`, 'color: rebeccapurple; font-weight: bold;', '');
+console.log(`%clist-card\n%cVersion: ${'0.0.2'}`, 'color: rebeccapurple; font-weight: bold;', '');
 
 class ListCard extends HTMLElement {
 
@@ -23,6 +23,7 @@ class ListCard extends HTMLElement {
       style.textContent = `
             ha-card {
               /* sample css */
+              overflow:auto;
             }
             table {
               width: 100%;
@@ -50,6 +51,20 @@ class ListCard extends HTMLElement {
               font-weight: normal;
             }
           `;
+
+      if (cardConfig.style) {
+        let styles = cardConfig['style'];
+        for (let index in styles) {
+          style.textContent += `ha-card {`;
+          if (styles.hasOwnProperty(index)) {
+            for (let s in styles[index]) {
+              style.textContent += `
+              ${s}: ${styles[index][s]};`;
+            }
+          }
+          style.textContent += `}`;
+        }
+      }
 
       // Go through columns and add CSS sytling to each column that is defined
       if (columns) {
