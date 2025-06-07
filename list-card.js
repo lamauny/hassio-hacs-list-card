@@ -52,7 +52,7 @@ class ListCard extends HTMLElement {
             }
             td:hover .tooltip {
               visibility: visible;
-              transition-delay: 0.3s;
+              transition-delay: 1s;
             }
             .tooltip {
               visibility: hidden;
@@ -66,6 +66,7 @@ class ListCard extends HTMLElement {
               text-align: center;
               color: #333;
               background: #fff;
+              z-index: 99999;
               box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
             }
           `;
