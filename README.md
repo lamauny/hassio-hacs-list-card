@@ -1,4 +1,4 @@
-# List Card by [@iantrich](https://www.github.com/iantrich)
+# List Card Fork of [@iantrich](https://www.github.com/iantrich)
 
 This card for [Lovelace](https://www.home-assistant.io/lovelace) on [Home Assistant](https://www.home-assistant.io/) that gives you a table generated with data from the [feedparser custom component](https://github.com/custom-components/sensor.feedparser) or any other sensor that provides data as a list of attributes.
 
@@ -35,6 +35,7 @@ From left to right: [feedparser](https://github.com/custom-components/sensor.fee
 | title | string | **Optional** | Add a custom title to the card.
 | row_limit | number | **Optional** | Limit the number of rows to display.
 | columns | object | **Optional** | List of columns to display.
+| style | object | **Optional** | CSS styles to apply to the card.
 
 ## Column object
 
@@ -43,6 +44,7 @@ From left to right: [feedparser](https://github.com/custom-components/sensor.fee
 | title | string | **Required** | Column header to display.
 | field | string | **Required** | key value of the entity that you wish to display.
 | add_link | string | **Optional** | key value of entity that has the link property to use.
+| tooltip | string | **Optional** | key value of entity that you wish to display as tooltip.
 | type | string | **Optional** | options are `image` and `icon`. Default is `None`. **Only set this for images or icons, otherwise leave blank**
 | style | object | **Optional** | CSS styles to apply to this column.
 | width | string | **Optional** | If type is image, sets the width of the image. Default 70.

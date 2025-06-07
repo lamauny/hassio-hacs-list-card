@@ -1,4 +1,4 @@
-console.log(`%clist-card\n%cVersion: ${'0.0.2'}`, 'color: rebeccapurple; font-weight: bold;', '');
+console.log(`%clist-card\n%cVersion: ${'0.0.3'}`, 'color: rebeccapurple; font-weight: bold;', '');
 
 class ListCard extends HTMLElement {
 
@@ -50,6 +50,24 @@ class ListCard extends HTMLElement {
               text-decoration-line: none;
               font-weight: normal;
             }
+            td:hover .tooltip {
+              visibility: visible;
+              transition-delay: 0.3s;
+            }
+            .tooltip {
+              visibility: hidden;
+              position: fixed;
+              overflow: auto;
+              white-space: normal;
+              max-width: 25%;
+              padding: 1px 2px;
+              border: 1px solid #b3c9ce;
+              border-radius: 4px;
+              text-align: center;
+              color: #333;
+              background: #fff;
+              box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+            }
           `;
 
       if (cardConfig.style) {
@@ -65,7 +83,6 @@ class ListCard extends HTMLElement {
           style.textContent += `}`;
         }
       }
-
       // Go through columns and add CSS sytling to each column that is defined
       if (columns) {
         for (let column in columns) {
@@ -156,6 +173,10 @@ class ListCard extends HTMLElement {
                 for (let column in columns) {
                   if (columns.hasOwnProperty(column)) {
                     card_content += `<td class=${columns[column].field}>`;
+
+                    if (columns[column].hasOwnProperty('tooltip')) {
+                      card_content +=  `<span class="tooltip">${feed[entry][columns[column].tooltip]}</span>`;
+                    }
 
                     if (columns[column].hasOwnProperty('add_link')) {
                       card_content +=  `<a href="${feed[entry][columns[column].add_link]}" target='_blank'>`;
