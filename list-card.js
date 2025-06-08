@@ -122,7 +122,7 @@ class ListCard extends HTMLElement {
       const old_state = this._hass ? this._hass.states[config.entity] : null;
       this._hass = hass;
 
-      if (hass.states[config.entity] = old_state)
+      if (hass.states[config.entity] == old_state)
         return;
 
       if (hass.states[config.entity]) {
