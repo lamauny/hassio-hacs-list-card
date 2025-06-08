@@ -53,6 +53,7 @@ class ListCard extends HTMLElement {
             td:hover .tooltip {
               visibility: visible;
               transition-delay: 1s;
+              z-index: 99999;
             }
             .tooltip {
               visibility: hidden;
@@ -66,7 +67,6 @@ class ListCard extends HTMLElement {
               text-align: center;
               color: #333;
               background: #fff;
-              z-index: 99999;
               box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
             }
           `;
@@ -119,6 +119,11 @@ class ListCard extends HTMLElement {
       const config = this._config;
       const root = this.shadowRoot;
       const card = root.lastChild;
+      const old_state = this._hass ? this._hass.states[config.entity] : null;
+      this._hass = hass;
+
+      if (hass.states[config.entity] = old_state)
+        return;
 
       if (hass.states[config.entity]) {
         const feed = config.feed_attribute ? hass.states[config.entity].attributes[config.feed_attribute] : hass.states[config.entity].attributes;
@@ -212,10 +217,10 @@ class ListCard extends HTMLElement {
 
                       if (columns[column].hasOwnProperty('regex')) {
                         newText = new RegExp(columns[column].regex, 'u').exec(feed[entry][columns[column].field]);
-                      } 
+                      }
                       if (columns[column].hasOwnProperty('prefix')) {
                         newText = columns[column].prefix + newText;
-                      } 
+                      }
                       if (columns[column].hasOwnProperty('postfix')) {
                         newText += columns[column].postfix;
                       }
