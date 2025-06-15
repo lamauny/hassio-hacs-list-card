@@ -58,9 +58,8 @@ class ListCard extends HTMLElement {
             .tooltip {
               visibility: hidden;
               position: fixed;
-              overflow: auto;
               white-space: normal;
-              max-width: 25%;
+              max-width: 30%;
               padding: 1px 2px;
               border: 1px solid #b3c9ce;
               border-radius: 4px;
@@ -178,7 +177,7 @@ class ListCard extends HTMLElement {
 
                 for (let column in columns) {
                   if (columns.hasOwnProperty(column)) {
-                    card_content += `<td class=${columns[column].field}>`;
+                    card_content += `<td class=${columns[column].field} onmouseover="this.childNodes[0].style.top=(event.clientY)+'px';">`;
 
                     if (columns[column].hasOwnProperty('tooltip')) {
                       card_content +=  `<span class="tooltip">${feed[entry][columns[column].tooltip]}</span>`;
